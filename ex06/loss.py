@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def loss_elem_(y, y_hat):
     """
     Description:  Calculates all the elements (y_pred - y)^2 of the loss function.
@@ -11,10 +14,12 @@ def loss_elem_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
+    if not isinstance(y, np.ndarray) or not isinstance(y_hat, np.ndarray)\
+         or y.shape[-1] == 0 or y_hat.shape[-1] == 0:
+        return None
     try:
         return((y_hat - y) * (y_hat - y))
-    except Exception as e:
-        print (e)
+    except Exception:
         return None
             
 def loss_(y, y_hat):
@@ -30,8 +35,10 @@ def loss_(y, y_hat):
     Raises:
         This function should not raise any Exception.
     """
+    if not isinstance(y, np.ndarray) or not isinstance(y_hat, np.ndarray)\
+         or y.shape[-1] == 0 or y_hat.shape[-1] == 0:
+        return None
     try:
         return loss_elem_(y, y_hat).sum() / (2 * len(y))
-    except Exception as e:
-        print (e)
+    except Exception:
         return None
