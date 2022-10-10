@@ -20,6 +20,8 @@ def predict_(x, theta):
         return None
     if (len(theta.shape) > 1 and theta.shape != (2, 1)) or (len(theta.shape) == 1 and theta.shape[0] != 2):
         return None
+    if x.shape[-1] == 0 or theta.shape[-1] == 0:
+        return None
     m = x.shape[0]
     y = np.zeros((m,1))
     for i, xi in enumerate(x):

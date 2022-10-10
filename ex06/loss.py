@@ -17,6 +17,8 @@ def loss_elem_(y, y_hat):
     if not isinstance(y, np.ndarray) or not isinstance(y_hat, np.ndarray)\
          or y.shape[-1] == 0 or y_hat.shape[-1] == 0:
         return None
+    if y.shape != y_hat.shape:
+        return None
     try:
         return((y_hat - y) * (y_hat - y))
     except Exception:
@@ -37,6 +39,8 @@ def loss_(y, y_hat):
     """
     if not isinstance(y, np.ndarray) or not isinstance(y_hat, np.ndarray)\
          or y.shape[-1] == 0 or y_hat.shape[-1] == 0:
+        return None
+    if y.shape != y_hat.shape:
         return None
     try:
         return loss_elem_(y, y_hat).sum() / (2 * len(y))
