@@ -1,5 +1,23 @@
 import numpy as np
 
+def add_intercept(x):
+    """Adds a column of 1’s to the non-empty numpy.array x.
+    Args:
+        x: has to be a numpy.array of dimension m * n.
+    Returns:
+        X, a numpy.array of dimension m * (n + 1).
+        None if x is not a numpy.array.
+        None if x is an empty numpy.array.
+    Raises:
+        This function should not raise any Exception.
+    """
+    if not isinstance(x, np.ndarray):
+        return None
+    if x.shape[-1] == 0:
+        return None
+    if isinstance(x, np.ndarray):
+        return (np.c_[np.ones(x.shape[0]), x])
+
 def predict_(x, theta):
     """Computes the vector of prediction y_hat from two non-empty numpy.array.
     Args:
@@ -22,8 +40,6 @@ def predict_(x, theta):
         return None
     if x.shape[-1] == 0 or theta.shape[-1] == 0:
         return None
-    m = x.shape[0]
-    y = np.zeros((m,1))
-    for i, xi in enumerate(x):
-        y[i][0] = theta[0] + theta[1] * xi
-    return y
+
+    x_1 = add_intercept(x)
+    return x_1.dot(theta)
