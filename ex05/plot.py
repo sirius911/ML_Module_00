@@ -23,11 +23,9 @@ def predict_(x, theta):
         return None
     if x.shape[-1] == 0 or theta.shape[-1] == 0:
         return None
-    m = x.shape[0]
-    y = np.zeros((m,1))
-    for i, xi in enumerate(x):
-        y[i][0] = theta[0] + theta[1] * xi
-    return y
+
+    x_1 = np.c_[np.ones(x.shape[0]), x]
+    return x_1.dot(theta)
 
 def plot(x, y, theta):
     """Plot the data and prediction line from three non-empty numpy.array.
