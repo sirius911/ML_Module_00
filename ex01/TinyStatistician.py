@@ -90,7 +90,7 @@ class TinyStatistician:
         return float(valeur)
     
     @noneValue
-    def quartiles(self, array):
+    def quartile(self, array):
         """computes the 1st and 3th quartiles of a given
         non-empty list or array
         return tuple of float or None if list or array empty
@@ -105,12 +105,15 @@ class TinyStatistician:
             coef = rang_q1 - int(rang_q1)
             r_inf = array_sorted[int(rang_q1 - 1)]
             r_sup = array_sorted[int(rang_q1)]
+            # print(f"coef = {coef}\tr_inf = {r_inf}\tr_sup = {r_sup}")
             if coef == 0.25:
-                result[0] = ((r_inf * 3) + r_sup) / 4
+                # result[0] = ((r_inf * 3) + r_sup) / 4
+                result[0] = r_inf
             elif coef == 0.75:
-                result[0] = (r_inf + (r_sup * 3)) / 4
+                result[0] = r_sup
             else:
                 result[0] = (r_inf + r_sup) / 2
+        
         rang_q3 = ((3 * n) + 1) / 4
         if int(rang_q3) == rang_q3:
             result[1] = float(array_sorted[int(rang_q3 - 1)])
@@ -118,10 +121,12 @@ class TinyStatistician:
             coef = rang_q3 - int(rang_q3)
             r_inf = array_sorted[int(rang_q3 - 1)]
             r_sup = array_sorted[int(rang_q3)]
+            # print(f"coef = {coef}\tr_inf = {r_inf}\tr_sup = {r_sup}")
+            
             if coef == 0.25:
-                result[1] = ((r_inf * 3) + r_sup) / 4
+                result[1] = r_inf
             elif coef == 0.75:
-                result[1] = (r_inf + (r_sup * 3)) / 4
+                result[1] = r_sup
             else:
                 result[1] = (r_inf + r_sup) / 4
         return result
