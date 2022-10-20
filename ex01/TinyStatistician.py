@@ -8,21 +8,14 @@ def noneValue(func):
 
     @functools.wraps(func)
     def function(*args, **kwargs):
-        # print("decorateur")
-        # print(args)
-        # print(len(args))
-        # print(type(args[1]))
-        # print("******")
         if not args or len(args) == 1 or len(args[1]) == 0:
             return None
         else:
             if isinstance(args[1], list):
-                # print("c'est une liste")
                 for el in args[1]:
                     if not isinstance(el, (int,float)):
                         return None
             elif isinstance(args[1], np.ndarray):
-                # print(f"c'est un tableau {args[1].shape}")
                 tab = args[1]
                 if len(tab.shape) == 1:
                     for el in tab:
@@ -138,13 +131,13 @@ class TinyStatistician:
         m = len(array)
         sum = 0
         for x in array:
-            sum += (x - mu) * (x - mu)
-        return (sum / (m - 1))
+            sum += ((x - mu) * (x - mu))
+        return round(sum * 1/(m - 1))
 
     @noneValue
     def std(self, array):
         """ computes the standard deviation of a given non-empty list pr array"""
-        return math.sqrt(self.var(array))
+        return round(math.sqrt(self.var(array)), 2)
 
     @noneValue
     def  percentile(self, array, p):
@@ -157,9 +150,5 @@ class TinyStatistician:
         """
         array_sorted = sorted(array)
         n = len(array_sorted)
-        rang_ordinal = math.floor((p / 100 * (n - 1)) + 1)
-        partie_fractionnelle = ((p / 100 * (n - 1)) + 1) % 1
-        v_n = array_sorted[rang_ordinal - 1]    #elem au rang n
-        v_n_1 = array_sorted[rang_ordinal]      #elel au rang n + 1
-        value = v_n + (partie_fractionnelle * (v_n_1 - v_n))
-        return (value)
+        rang_ordinal = math.ceil(p * n / 100)
+        return (array_sorted[rang_ordinal - 1])
