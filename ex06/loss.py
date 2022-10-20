@@ -20,7 +20,7 @@ def loss_elem_(y, y_hat):
     if y.shape != y_hat.shape:
         return None
     try:
-        return((y_hat - y) * (y_hat - y))
+        return((y_hat - y)*(y_hat - y) / (2 * len(y)))
     except Exception:
         return None
             
@@ -43,6 +43,6 @@ def loss_(y, y_hat):
     if y.shape != y_hat.shape:
         return None
     try:
-        return loss_elem_(y, y_hat).sum() / (2 * len(y))
+        return loss_elem_(y, y_hat).sum()
     except Exception:
         return None
