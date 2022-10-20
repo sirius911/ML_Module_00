@@ -29,3 +29,10 @@ assert abs(tstat.median(data) - 210.5) < epsilon, err
 quartile = tstat.quartile(data)
 assert abs(quartile[0] - 18) < epsilon, err
 assert abs(quartile[1] - 650) < epsilon, err
+
+assert abs(tstat.percentile(data, 10) - 3) < epsilon, err
+assert abs(tstat.percentile(data, 28) - 18) < epsilon, err
+assert abs(tstat.percentile(data, 83) - 754) < epsilon, err
+
+assert abs(tstat.var(data) - 654661) < epsilon, err #Calculer une Variance en ligne.html
+assert abs(tstat.std(data) - 809.11) < epsilon, err

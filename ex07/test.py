@@ -1,6 +1,11 @@
 import numpy as np
 from vec_loss import loss_
 
+y_hat=np.array([[1], [2], [3], [4]])
+y=np.array([[0], [0], [0], [0]])
+
+print(loss_(y,y))
+print(loss_(y,y_hat))
 
 X = np.array([[0], [15], [-9], [7], [12], [3], [-21]])
 Y = np.array([[2], [14], [-13], [5], [12], [4], [-19]])

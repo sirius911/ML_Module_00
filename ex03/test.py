@@ -3,7 +3,8 @@ from tools import add_intercept
 
 # Example 1:
 x = np.arange(1,6)
-add_intercept(x)
+print(x)
+print(add_intercept(x))
 # Output:
 # array([[1., 1.],
 # [1., 2.],
@@ -12,7 +13,8 @@ add_intercept(x)
 # [1., 5.]])
 # Example 2:
 y = np.arange(1,10).reshape((3,3))
-add_intercept(y)
+print(y)
+print(add_intercept(y))
 # Output:
 # array([[1., 1., 2., 3.],
 # [1., 4., 5., 6.],
